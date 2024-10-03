@@ -17,5 +17,43 @@ public class Bed {
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
+    public Bed() {
+    }
 
+    public Bed(Long bedId, Hospital hospital, Speciality speciality) {
+        this.bedId = bedId;
+        this.hospital = hospital;
+        this.speciality = speciality;
+    }
+
+    public Long getBedId() {
+        return bedId;
+    }
+
+    public void setBedId(Long bedId) {
+        this.bedId = bedId;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
+
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
+    }
+
+    @Override
+    public String toString() {
+        return "Bed{" +
+                "bedId=" + bedId +
+                '}';
+    }
 }
