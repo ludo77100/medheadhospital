@@ -2,6 +2,7 @@ package com.medhead.hospitalmicroservice.entities;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Bed {
 
     @Id
