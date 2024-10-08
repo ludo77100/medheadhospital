@@ -1,5 +1,7 @@
 package com.medhead.hospitalmicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class Bed {
 
     @ManyToOne
     @JoinColumn(name = "hospital_id")
+    @JsonIgnore
     private Hospital hospital;
 
     @ManyToOne

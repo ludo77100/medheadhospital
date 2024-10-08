@@ -1,5 +1,6 @@
 package com.medhead.hospitalmicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;

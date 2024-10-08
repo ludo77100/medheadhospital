@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BedServiceImpl implements BedService {
@@ -27,8 +26,8 @@ public class BedServiceImpl implements BedService {
     private SpecialityRepository specialityRepository ;
 
     @Override
-    public List<Bed> findFreeBedsBySpeciality(Speciality speciality) {
-        return bedRepository.findFreeBedsBySpeciality(speciality);
+    public List<Bed> findFreeBedsBySpecialityId(Long specialityId) {
+        return bedRepository.findFreeBedsBySpecialityId(specialityId);
     }
 
     @Override
@@ -57,6 +56,8 @@ public class BedServiceImpl implements BedService {
         }
         return newBedList;
     }
+
+
 
     public int extractInt(String input) {
         int index = input.lastIndexOf("B");

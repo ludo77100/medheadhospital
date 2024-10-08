@@ -1,5 +1,8 @@
 package com.medhead.hospitalmicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -15,12 +18,15 @@ public class Speciality {
 
     @ManyToOne
     @JoinColumn(name = "speciality_group_id")
+    @JsonIgnore
     private SpecialityGroup specialityGroup ;
 
     @OneToMany(mappedBy = "speciality", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Bed> beds ;
 
     @ManyToMany(mappedBy = "specialities")
+    @JsonIgnore
     private Set<Hospital> hospitals ;
 
     public Speciality() {
@@ -72,5 +78,16 @@ public class Speciality {
 
     public void setHospitals(Set<Hospital> hospitals) {
         this.hospitals = hospitals;
+    }
+
+    @Override
+    public String toString() {
+        return "Speciality{" +
+                "specialityId=" + specialityId +
+                ", specialityName='" + specialityName + '\'' +
+                ", specialityGroup=" + specialityGroup +
+                ", beds=" + beds +
+                ", hospitals=" + hospitals +
+                '}';
     }
 }

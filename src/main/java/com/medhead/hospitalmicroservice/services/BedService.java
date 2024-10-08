@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BedService {
 
-    List<Bed> findFreeBedsBySpeciality(Speciality speciality);
-
     List<Bed> bulkSave(Long hospitalId, Long specialityId, int bedAmount);
+
+    List<Bed> findFreeBedsBySpecialityId(Long specialityId);
 }

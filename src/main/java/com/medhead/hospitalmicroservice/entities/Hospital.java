@@ -1,5 +1,7 @@
 package com.medhead.hospitalmicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -26,6 +28,7 @@ public class Hospital {
             joinColumns = @JoinColumn(name = "hospital_id"),
             inverseJoinColumns = @JoinColumn(name = "speciality_id")
     )
+    @JsonIgnore
     private Set<Speciality> specialities ;
 
     public Hospital() {

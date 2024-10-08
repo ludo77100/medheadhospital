@@ -1,7 +1,6 @@
 package com.medhead.hospitalmicroservice.controllers;
 
 import com.medhead.hospitalmicroservice.entities.Hospital;
-import com.medhead.hospitalmicroservice.entities.Speciality;
 import com.medhead.hospitalmicroservice.services.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,10 +33,10 @@ public class HospitalController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/bedlist")
+    @GetMapping("/withfreebedbyspeciality")
     @Secured("ROLE_SUPER_ADMIN")
-    public ResponseEntity<List<Hospital>> findHospitalsWithFreeBeds(@RequestParam Speciality speciality) {
-        List<Hospital> hospitalList = hospitalService.findHospitalWithFreeBedsForOneSpeciality(speciality) ;
+    public ResponseEntity<List<Hospital>> findHospitalsWithFreeBeds(@RequestParam Long specialityId) {
+        List<Hospital> hospitalList = hospitalService.findHospitalWithFreeBedsForOneSpeciality(specialityId) ;
         return new ResponseEntity<>(hospitalList, HttpStatus.OK);
     }
 

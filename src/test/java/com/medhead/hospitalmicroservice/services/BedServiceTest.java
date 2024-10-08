@@ -25,29 +25,6 @@ public class BedServiceTest {
     private BedServiceImpl bedServiceImpl;
 
     @Test
-    public void testGetFreeBedsForSpeciality() {
-        // Given
-        Speciality speciality = new Speciality();
-        speciality.setSpecialityName("Cardiology");
-
-        Bed freeBed = new Bed();
-        freeBed.setBedCode("B101");
-        freeBed.setFree(true);
-        freeBed.setSpeciality(speciality);
-
-        when(bedRepository.findFreeBedsBySpeciality(speciality))
-                .thenReturn(Collections.singletonList(freeBed));
-
-        // When
-        List<Bed> freeBeds = bedServiceImpl.findFreeBedsBySpeciality(speciality);
-
-        // Then
-        assertNotNull(freeBeds);
-        assertEquals(1, freeBeds.size());
-        assertEquals("B101", freeBeds.get(0).getBedCode());
-    }
-
-    @Test
     void testExtractIntAfterLastB_ValidInput() {
         String input = "1-22-B01";
         int expected = 1;

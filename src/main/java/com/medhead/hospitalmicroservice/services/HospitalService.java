@@ -11,5 +11,5 @@ public interface HospitalService {
 
     Optional<Hospital> findById(Long hospitalId);
 
-    List<Hospital> findHospitalWithFreeBedsForOneSpeciality(Speciality speciality);
+    List<Hospital> findHospitalWithFreeBedsForOneSpeciality(Long specialityId);
 }

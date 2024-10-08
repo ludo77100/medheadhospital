@@ -33,15 +33,7 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public List<Hospital> findHospitalWithFreeBedsForOneSpeciality(Speciality speciality) {
-        List<Bed> freeBedList = bedService.findFreeBedsBySpeciality(speciality);
-        List<Hospital> hospitalList = new ArrayList<>();
-
-        for (Bed bed : freeBedList){
-           if (!hospitalList.contains(bed.getHospital())){
-               hospitalList.add(bed.getHospital());
-           }
-        }
-        return hospitalList;
+    public List<Hospital> findHospitalWithFreeBedsForOneSpeciality(Long specialityId) {
+        return hospitalRepository.findHospitalsWithFreeBedsBySpeciality(specialityId);
     }
 }
