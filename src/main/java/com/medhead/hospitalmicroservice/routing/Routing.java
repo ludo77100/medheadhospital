@@ -14,58 +14,50 @@ import java.util.List;
 @Service
 public class Routing {
 
-    GraphHopper hopper = new GraphHopper();
+    private final GraphHopper hopper;
 
-    public void graphHopperInit() {
+    public Routing() {
+        // Initialisation de GraphHopper une seule fois
+        hopper = new GraphHopper();
 
         String osmPath = Paths.get("src/main/resources/greater-london-latest.osm.pbf").toString();
-
-        // Initialisation de GraphHopper
         hopper.setGraphHopperLocation("graph-folder");
         hopper.setOSMFile(osmPath);
 
-        // Définir le profil pour un véhicule spécifique (ex. voiture)
         Profile carProfile = new Profile("car")
-                .setVehicle("car")  // Définissez le véhicule ici
-                .setWeighting("fastest");  // Méthode de calcul du profil, ex. le plus rapide
+                .setVehicle("car")
+                .setWeighting("fastest");
 
         hopper.setProfiles(carProfile);
-
-        // Chargez les données et préparez GraphHopper
         hopper.importOrLoad();
-        System.out.println("Initialisation de graphopper");
+        System.out.println("GraphHopper initialisé");
     }
 
     public Hospital getClosestHospital(List<Hospital> hospitalList, double userLat, double userLon) {
+        long shorterTime = Long.MAX_VALUE;
+        Hospital closestHospital = null;
 
-        this.graphHopperInit();
-
-        long shorterTime = 1000000 ;
-        Hospital closestHospital = new Hospital();
-
-        for(Hospital hospital: hospitalList){
-            // Créez une requête de routage
+        for (Hospital hospital : hospitalList) {
             GHRequest request = new GHRequest(
-                    new GHPoint(userLat, userLon), // Point de départ (latitude, longitude)
-                    new GHPoint(hospital.getHospitalLatitude(), hospital.getHospitalLongitude())  // Point d'arrivée (latitude, longitude)
+                    new GHPoint(userLat, userLon),
+                    new GHPoint(hospital.getHospitalLatitude(), hospital.getHospitalLongitude())
             ).setProfile("car");
 
-            // Exécutez la requête
             GHResponse response = hopper.route(request);
 
-            // Gérer les résultats
             if (response.hasErrors()) {
                 System.out.println("Erreur : " + response.getErrors());
             } else {
-                if (response.getBest().getTime() < shorterTime){
+                if (response.getBest().getTime() < shorterTime) {
                     shorterTime = response.getBest().getTime();
                     closestHospital = hospital;
                 }
                 System.out.println("Distance : " + response.getBest().getDistance() + " mètres");
                 System.out.println("Durée : " + response.getBest().getTime() / 1000.0 / 60.0 + " minutes");
+                System.out.println(hospital.getHospitalName());
             }
         }
 
-        return closestHospital ;
+        return closestHospital;
     }
 }

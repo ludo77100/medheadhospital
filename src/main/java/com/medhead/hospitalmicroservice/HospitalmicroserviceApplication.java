@@ -9,8 +9,6 @@ public class HospitalmicroserviceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HospitalmicroserviceApplication.class, args);
-		Routing routing = new Routing() ;
-		routing.graphHopperInit();
 	}
 
 }
