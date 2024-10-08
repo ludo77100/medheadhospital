@@ -1,6 +1,8 @@
 package com.medhead.hospitalmicroservice.controllers;
 
+import com.graphhopper.GraphHopper;
 import com.medhead.hospitalmicroservice.entities.Hospital;
+import com.medhead.hospitalmicroservice.routing.Routing;
 import com.medhead.hospitalmicroservice.services.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,9 @@ public class HospitalController {
 
     @Autowired
     private HospitalService hospitalService;
+
+    @Autowired
+    private Routing routing ;
 
     @GetMapping("/all")
     @Secured("ROLE_SUPER_ADMIN")
@@ -38,6 +43,21 @@ public class HospitalController {
     public ResponseEntity<List<Hospital>> findHospitalsWithFreeBeds(@RequestParam Long specialityId) {
         List<Hospital> hospitalList = hospitalService.findHospitalWithFreeBedsForOneSpeciality(specialityId) ;
         return new ResponseEntity<>(hospitalList, HttpStatus.OK);
+    }
+
+    @GetMapping("/closest")
+    @Secured("ROLE_SUPER_ADMIN")
+    public ResponseEntity<Hospital> findClosestHospitalWithFreeBedsBySpeciality(@RequestParam Long specialityId,
+                                                                                @RequestParam String userLatStr,
+                                                                                @RequestParam String userLonStr) {
+
+        double userLat = Double.parseDouble(userLatStr);
+        double userLon = Double.parseDouble(userLonStr);
+
+        List<Hospital> hospitalList = hospitalService.findHospitalWithFreeBedsForOneSpeciality(specialityId) ;
+        Hospital closestHospital = routing.getClosestHospital(hospitalList, userLat, userLon);
+
+        return new ResponseEntity<>(closestHospital, HttpStatus.OK);
     }
 
 }

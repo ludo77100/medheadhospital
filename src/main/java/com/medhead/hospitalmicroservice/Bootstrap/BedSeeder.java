@@ -2,6 +2,7 @@
 package com.medhead.hospitalmicroservice.Bootstrap;
 
 
+import com.medhead.hospitalmicroservice.routing.Routing;
 import com.medhead.hospitalmicroservice.services.BedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -15,9 +16,13 @@ public class BedSeeder implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     BedService bedService ;
 
+    @Autowired
+    Routing routing ;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        this.createBulkBed();
+        //this.createBulkBed();
+        //routing.routingCalcul();
     }
 
     private void createBulkBed() {
@@ -31,4 +36,5 @@ public class BedSeeder implements ApplicationListener<ContextRefreshedEvent> {
             }
         }
     }
-}*/
+}
+*/
