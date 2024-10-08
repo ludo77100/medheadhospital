@@ -2,7 +2,6 @@ package com.medhead.hospitalmicroservice.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
