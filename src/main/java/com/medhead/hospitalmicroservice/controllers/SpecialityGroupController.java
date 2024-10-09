@@ -1,7 +1,5 @@
 package com.medhead.hospitalmicroservice.controllers;
 
-import com.medhead.hospitalmicroservice.dto.SpecialityGroupDTO;
-import com.medhead.hospitalmicroservice.entities.Hospital;
 import com.medhead.hospitalmicroservice.entities.SpecialityGroup;
 import com.medhead.hospitalmicroservice.services.SpecialityGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
