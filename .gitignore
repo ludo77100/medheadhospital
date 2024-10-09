@@ -4,4 +4,4 @@ Thumbs.db
 
 # Ignorer les fichiers compilés et de construction
 target/
-*.class
+*.classtarget/classes/*.pbf
