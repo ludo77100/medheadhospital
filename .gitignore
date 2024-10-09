@@ -1,7 +1,6 @@
 .DS_Store
 Thumbs.db
-.pbf
 
-# Ignorer les fichiers compilés et de construction
-target/
 *.classtarget/classes/*.pbf
+/target/
+/src/main/resources/greater-london-latest.osm.pbf
