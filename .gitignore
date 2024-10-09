@@ -1,3 +1,7 @@
 .DS_Store
 Thumbs.db
 .pbf
+
+# Ignorer les fichiers compilés et de construction
+target/
+*.class
