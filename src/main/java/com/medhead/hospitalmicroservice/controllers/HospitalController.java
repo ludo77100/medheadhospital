@@ -1,6 +1,7 @@
 package com.medhead.hospitalmicroservice.controllers;
 
 import com.graphhopper.GraphHopper;
+import com.medhead.hospitalmicroservice.entities.ClosestHospital;
 import com.medhead.hospitalmicroservice.entities.Hospital;
 import com.medhead.hospitalmicroservice.routing.Routing;
 import com.medhead.hospitalmicroservice.services.HospitalService;
@@ -47,17 +48,17 @@ public class HospitalController {
 
     @GetMapping("/closest")
     @Secured("ROLE_SUPER_ADMIN")
-    public ResponseEntity<Hospital> findClosestHospitalWithFreeBedsBySpeciality(@RequestParam Long specialityId,
-                                                                                @RequestParam String userLatStr,
-                                                                                @RequestParam String userLonStr) {
+    public ResponseEntity<List<ClosestHospital>> findClosestHospitalWithFreeBedsBySpeciality(@RequestParam Long specialityId,
+                                                                                       @RequestParam String userLatStr,
+                                                                                       @RequestParam String userLonStr) {
 
         double userLat = Double.parseDouble(userLatStr);
         double userLon = Double.parseDouble(userLonStr);
 
         List<Hospital> hospitalList = hospitalService.findHospitalWithFreeBedsForOneSpeciality(specialityId) ;
-        Hospital closestHospital = routing.getClosestHospital(hospitalList, userLat, userLon);
+        List<ClosestHospital> closestHospitalList = routing.getClosestHospital(hospitalList, userLat, userLon, specialityId);
 
-        return new ResponseEntity<>(closestHospital, HttpStatus.OK);
+        return new ResponseEntity<>(closestHospitalList, HttpStatus.OK);
     }
 
 }
