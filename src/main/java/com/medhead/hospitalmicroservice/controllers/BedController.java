@@ -23,4 +23,12 @@ public class BedController {
         List<Bed> bedList = bedService.bulkSave(hospitalId, specialityId, bedAmount);
         return new ResponseEntity<>(bedList, HttpStatus.OK);
     }
+
+    @GetMapping("/changestate")
+    @Secured("ROLE_SUPER_ADMIN")
+    public ResponseEntity<Bed> changeBedState(@RequestParam Long bedId) {
+        return bedService.changeBedState(bedId)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }
