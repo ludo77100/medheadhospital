@@ -8,10 +8,12 @@ import com.medhead.hospitalmicroservice.repositories.HospitalRepository;
 import com.medhead.hospitalmicroservice.repositories.SpecialityRepository;
 import com.medhead.hospitalmicroservice.services.BedService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BedServiceImpl implements BedService {
@@ -28,6 +30,15 @@ public class BedServiceImpl implements BedService {
     @Override
     public List<Bed> findFreeBedsBySpecialityId(Long specialityId) {
         return bedRepository.findFreeBedsBySpecialityId(specialityId);
+    }
+
+    @Override
+    public Optional<Bed> changeBedState(Long bedId) {
+        return bedRepository.findById(bedId).map(bed -> {
+            bed.setFree(!bed.isFree()); // Inverse l'état de disponibilité
+            bedRepository.save(bed);    // Sauvegarde le lit mis à jour
+            return bed;
+        });
     }
 
     @Override
