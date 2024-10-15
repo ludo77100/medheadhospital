@@ -8,7 +8,6 @@ import com.medhead.hospitalmicroservice.repositories.HospitalRepository;
 import com.medhead.hospitalmicroservice.repositories.SpecialityRepository;
 import com.medhead.hospitalmicroservice.services.BedService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

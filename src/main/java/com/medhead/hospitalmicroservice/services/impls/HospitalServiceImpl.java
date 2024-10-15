@@ -1,15 +1,11 @@
 package com.medhead.hospitalmicroservice.services.impls;
 
-import com.medhead.hospitalmicroservice.entities.Bed;
 import com.medhead.hospitalmicroservice.entities.Hospital;
-import com.medhead.hospitalmicroservice.entities.Speciality;
 import com.medhead.hospitalmicroservice.repositories.HospitalRepository;
-import com.medhead.hospitalmicroservice.services.BedService;
 import com.medhead.hospitalmicroservice.services.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,9 +14,6 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Autowired
     private HospitalRepository hospitalRepository ;
-
-    @Autowired
-    private BedService bedService ;
 
     @Override
     public List<Hospital> findAll() {

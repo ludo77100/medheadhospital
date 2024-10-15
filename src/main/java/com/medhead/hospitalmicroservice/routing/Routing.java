@@ -8,11 +8,11 @@ import com.graphhopper.util.shapes.GHPoint;
 import com.medhead.hospitalmicroservice.entities.Bed;
 import com.medhead.hospitalmicroservice.entities.ClosestHospital;
 import com.medhead.hospitalmicroservice.entities.Hospital;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -20,8 +20,33 @@ import java.util.List;
 public class Routing {
 
     private final GraphHopper hopper;
+    private boolean initialized = false;
 
-    public Routing() {
+    @Autowired
+    public Routing(GraphHopper hopper) {
+        this.hopper = hopper;
+        if (!initialized) {
+//            initGraphHopper();
+            initialized = true;
+        }
+    }
+
+/*    private void initGraphHopper() {
+        if (!initialized) {
+            String osmPath = Paths.get("src/main/resources/greater-london-latest.osm.pbf").toString();
+            hopper.setGraphHopperLocation("graph-folder");
+            hopper.setOSMFile(osmPath);
+
+            Profile carProfile = new Profile("car")
+                    .setVehicle("car")
+                    .setWeighting("fastest");
+            hopper.setProfiles(carProfile);
+            hopper.importOrLoad();
+        }
+    }*/
+
+
+/*    public Routing() {
         // Initialisation de GraphHopper une seule fois
         hopper = new GraphHopper();
 
@@ -36,7 +61,7 @@ public class Routing {
         hopper.setProfiles(carProfile);
         hopper.importOrLoad();
         System.out.println("GraphHopper initialisé");
-    }
+    }*/
 
     public List<ClosestHospital> getClosestHospital(List<Hospital> hospitalList, double userLat, double userLon, Long specialityId) {
         List<ClosestHospital> closestHospitalList = new ArrayList<>();
