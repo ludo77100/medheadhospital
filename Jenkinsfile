@@ -30,6 +30,16 @@ pipeline {
                 }
             }
         }
+        stage('Integration Test') {
+            steps {
+                sh 'mvn failsafe:integration-test failsafe:verify'
+            }
+            post {
+                always {
+                    junit '**/target/failsafe-reports/*.xml'
+                }
+            }
+        }
         stage('SonarCloud Analysis') {
             steps {
                 script {
