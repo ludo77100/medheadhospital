@@ -132,7 +132,7 @@
 						</goals>
 					</execution>
 					<execution>
-						<id>report</id>
+						<id>report-integration-tests</id>
 						<phase>verify</phase>
 						<goals>
 							<goal>report</goal>
