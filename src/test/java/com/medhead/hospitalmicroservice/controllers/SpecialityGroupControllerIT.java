@@ -48,7 +48,6 @@ public class SpecialityGroupControllerIT {
 
     @BeforeEach
     void setUp() {
-        specialityGroupRepository.deleteAll();
 
         Set<Speciality> specialitySet1 = new HashSet<>();
         Set<Speciality> specialitySet2 = new HashSet<>();
