@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(roles = "SUPER_ADMIN")
-public class BedControllerIT {
+class BedControllerIT {
 
     @Autowired
     private MockMvc mockMvc;

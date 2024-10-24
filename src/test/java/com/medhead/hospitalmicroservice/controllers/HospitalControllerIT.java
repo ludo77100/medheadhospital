@@ -33,7 +33,7 @@ import static org.hamcrest.Matchers.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(roles = "SUPER_ADMIN")
-public class HospitalControllerIT {
+class HospitalControllerIT {
 
     @Autowired
     MockMvc mockMvc ;

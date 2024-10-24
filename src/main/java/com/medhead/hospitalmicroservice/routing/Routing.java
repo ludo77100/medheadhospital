@@ -24,42 +24,9 @@ public class Routing {
     public Routing(GraphHopper hopper) {
         this.hopper = hopper;
         if (!initialized) {
-//            initGraphHopper();
             initialized = true;
         }
     }
-
-/*    private void initGraphHopper() {
-        if (!initialized) {
-            String osmPath = Paths.get("src/main/resources/greater-london-latest.osm.pbf").toString();
-            hopper.setGraphHopperLocation("graph-folder");
-            hopper.setOSMFile(osmPath);
-
-            Profile carProfile = new Profile("car")
-                    .setVehicle("car")
-                    .setWeighting("fastest");
-            hopper.setProfiles(carProfile);
-            hopper.importOrLoad();
-        }
-    }*/
-
-
-/*    public Routing() {
-        // Initialisation de GraphHopper une seule fois
-        hopper = new GraphHopper();
-
-        String osmPath = Paths.get("src/main/resources/greater-london-latest.osm.pbf").toString();
-        hopper.setGraphHopperLocation("graph-folder");
-        hopper.setOSMFile(osmPath);
-
-        Profile carProfile = new Profile("car")
-                .setVehicle("car")
-                .setWeighting("fastest");
-
-        hopper.setProfiles(carProfile);
-        hopper.importOrLoad();
-        System.out.println("GraphHopper initialisé");
-    }*/
 
     public List<ClosestHospital> getClosestHospital(List<Hospital> hospitalList, double userLat, double userLon, Long specialityId) {
         List<ClosestHospital> closestHospitalList = new ArrayList<>();
