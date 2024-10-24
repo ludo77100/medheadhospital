@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(roles = "SUPER_ADMIN")
-public class SpecialityGroupControllerIT {
+class SpecialityGroupControllerIT {
 
     @Autowired
     MockMvc mockMvc ;
@@ -113,7 +113,7 @@ public class SpecialityGroupControllerIT {
     }
 
     @Test
-    public void shouldGetAllSpecialityGroupsWithChildren() throws Exception {
+    void shouldGetAllSpecialityGroupsWithChildren() throws Exception {
         //Act & Asserts
         ResultActions result = mockMvc.perform(get("/specialityGroup/all"))
                 .andExpect(status().isOk())

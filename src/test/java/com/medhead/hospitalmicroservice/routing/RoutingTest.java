@@ -24,7 +24,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RoutingTest {
+class RoutingTest {
 
     @Mock
     private GraphHopper mockHopper;
@@ -37,7 +37,7 @@ public class RoutingTest {
     private Routing routing;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         routing = new Routing(mockHopper);
 
         userLat = 51.5074; // Latitude de Londres
@@ -66,7 +66,7 @@ public class RoutingTest {
     }
 
     @Test
-    public void getClosestHospital_ShouldReturnListOfClosestHospitals() {
+    void getClosestHospital_ShouldReturnListOfClosestHospitals() {
 
         GHResponse mockResponse = new GHResponse();
         ResponsePath responsePath = new ResponsePath();

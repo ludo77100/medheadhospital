@@ -3,7 +3,6 @@ package com.medhead.hospitalmicroservice.routing;
 import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
-import com.graphhopper.config.Profile;
 import com.graphhopper.util.shapes.GHPoint;
 import com.medhead.hospitalmicroservice.entities.Bed;
 import com.medhead.hospitalmicroservice.entities.ClosestHospital;
@@ -11,7 +10,6 @@ import com.medhead.hospitalmicroservice.entities.Hospital;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -26,42 +24,9 @@ public class Routing {
     public Routing(GraphHopper hopper) {
         this.hopper = hopper;
         if (!initialized) {
-//            initGraphHopper();
             initialized = true;
         }
     }
-
-/*    private void initGraphHopper() {
-        if (!initialized) {
-            String osmPath = Paths.get("src/main/resources/greater-london-latest.osm.pbf").toString();
-            hopper.setGraphHopperLocation("graph-folder");
-            hopper.setOSMFile(osmPath);
-
-            Profile carProfile = new Profile("car")
-                    .setVehicle("car")
-                    .setWeighting("fastest");
-            hopper.setProfiles(carProfile);
-            hopper.importOrLoad();
-        }
-    }*/
-
-
-/*    public Routing() {
-        // Initialisation de GraphHopper une seule fois
-        hopper = new GraphHopper();
-
-        String osmPath = Paths.get("src/main/resources/greater-london-latest.osm.pbf").toString();
-        hopper.setGraphHopperLocation("graph-folder");
-        hopper.setOSMFile(osmPath);
-
-        Profile carProfile = new Profile("car")
-                .setVehicle("car")
-                .setWeighting("fastest");
-
-        hopper.setProfiles(carProfile);
-        hopper.importOrLoad();
-        System.out.println("GraphHopper initialisé");
-    }*/
 
     public List<ClosestHospital> getClosestHospital(List<Hospital> hospitalList, double userLat, double userLon, Long specialityId) {
         List<ClosestHospital> closestHospitalList = new ArrayList<>();
@@ -75,11 +40,8 @@ public class Routing {
             GHResponse response = hopper.route(request);
 
             if (response.hasErrors()) {
-                System.out.println("Erreur : " + response.getErrors());
+                throw new RuntimeException("Une erreur s'est produite lors du routing");
             } else {
-                System.out.println("Distance : " + response.getBest().getDistance() + " mètres");
-                System.out.println("Durée : " + response.getBest().getTime() / 1000.0 / 60.0 + " minutes");
-                System.out.println(hospital.getHospitalName());
 
                 ClosestHospital closestHospital = new ClosestHospital();
 

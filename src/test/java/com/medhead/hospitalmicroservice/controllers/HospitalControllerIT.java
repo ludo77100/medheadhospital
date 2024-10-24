@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -34,7 +33,7 @@ import static org.hamcrest.Matchers.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(roles = "SUPER_ADMIN")
-public class HospitalControllerIT {
+class HospitalControllerIT {
 
     @Autowired
     MockMvc mockMvc ;
@@ -119,7 +118,7 @@ public class HospitalControllerIT {
     }
 
     @Test
-    public void shouldGetAllHospitals() throws Exception {
+    void shouldGetAllHospitals() throws Exception {
         mockMvc.perform(get("/hospital/all")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -129,7 +128,7 @@ public class HospitalControllerIT {
     }
 
     @Test
-    public void shouldGetHospitalById() throws Exception {
+    void shouldGetHospitalById() throws Exception {
         mockMvc.perform(get("/hospital/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -139,14 +138,14 @@ public class HospitalControllerIT {
     }
 
     @Test
-    public void shouldReturnNotFoundForNonExistingHospital() throws Exception {
+    void shouldReturnNotFoundForNonExistingHospital() throws Exception {
         mockMvc.perform(get("/hospital/999")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    public void shouldGetHospitalsWithFreeBedsBySpeciality() throws Exception {
+    void shouldGetHospitalsWithFreeBedsBySpeciality() throws Exception {
         mockMvc.perform(get("/hospital/withfreebedbyspeciality")
                         .param("specialityId", "1")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -156,7 +155,7 @@ public class HospitalControllerIT {
     }
 
     @Test
-    public void shouldFindClosestHospitalWithFreeBedsBySpeciality() throws Exception {
+    void shouldFindClosestHospitalWithFreeBedsBySpeciality() throws Exception {
         ResultActions result = mockMvc.perform(get("/hospital/closest")
                 .param("specialityId", "1")
                 .param("userLatStr", "51.5007")

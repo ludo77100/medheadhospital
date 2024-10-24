@@ -1,6 +1,5 @@
 package com.medhead.hospitalmicroservice.controllers;
 
-import com.graphhopper.GraphHopper;
 import com.medhead.hospitalmicroservice.entities.ClosestHospital;
 import com.medhead.hospitalmicroservice.entities.Hospital;
 import com.medhead.hospitalmicroservice.routing.Routing;

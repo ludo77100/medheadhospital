@@ -32,7 +32,7 @@ public class ClosestHospital {
 
     //TODO test unitaire
     public void setDistance(double distance) {
-        BigDecimal bd = new BigDecimal(distance)
+        BigDecimal bd = BigDecimal.valueOf(distance)
                 .setScale(2, RoundingMode.HALF_UP);
         distance = bd.doubleValue();
         this.distance = distance;
