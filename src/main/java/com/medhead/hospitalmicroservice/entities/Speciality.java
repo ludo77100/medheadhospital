@@ -2,10 +2,16 @@ package com.medhead.hospitalmicroservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Speciality {
 
     @Id
@@ -27,65 +33,4 @@ public class Speciality {
     @JsonIgnore
     private Set<Hospital> hospitals ;
 
-    public Speciality() {
-    }
-
-    public Speciality(Long specialityId, String specialityName, SpecialityGroup specialityGroup, Set<Bed> beds, Set<Hospital> hospitals) {
-        this.specialityId = specialityId;
-        this.specialityName = specialityName;
-        this.specialityGroup = specialityGroup;
-        this.beds = beds;
-        this.hospitals = hospitals;
-    }
-
-    public Long getSpecialityId() {
-        return specialityId;
-    }
-
-    public void setSpecialityId(Long specialityId) {
-        this.specialityId = specialityId;
-    }
-
-    public String getSpecialityName() {
-        return specialityName;
-    }
-
-    public void setSpecialityName(String specialityName) {
-        this.specialityName = specialityName;
-    }
-
-    public SpecialityGroup getSpecialityGroup() {
-        return specialityGroup;
-    }
-
-    public void setSpecialityGroup(SpecialityGroup specialityGroup) {
-        this.specialityGroup = specialityGroup;
-    }
-
-    public Set<Bed> getBeds() {
-        return beds;
-    }
-
-    public void setBeds(Set<Bed> beds) {
-        this.beds = beds;
-    }
-
-    public Set<Hospital> getHospitals() {
-        return hospitals;
-    }
-
-    public void setHospitals(Set<Hospital> hospitals) {
-        this.hospitals = hospitals;
-    }
-
-    @Override
-    public String toString() {
-        return "Speciality{" +
-                "specialityId=" + specialityId +
-                ", specialityName='" + specialityName + '\'' +
-                ", specialityGroup=" + specialityGroup +
-                ", beds=" + beds +
-                ", hospitals=" + hospitals +
-                '}';
-    }
 }
