@@ -8,19 +8,26 @@ import com.medhead.hospitalmicroservice.repositories.BedRepository;
 import com.medhead.hospitalmicroservice.repositories.HospitalRepository;
 import com.medhead.hospitalmicroservice.repositories.SpecialityGroupRepository;
 import com.medhead.hospitalmicroservice.repositories.SpecialityRepository;
+import com.medhead.hospitalmicroservice.services.BedService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -49,6 +56,12 @@ class BedControllerIT {
 
     @Autowired
     private HospitalRepository hospitalRepository ;
+
+    @InjectMocks
+    private BedController bedController ;
+
+    @Mock
+    private BedService bedService;
 
 
     @BeforeEach
@@ -149,6 +162,34 @@ class BedControllerIT {
         mockMvc.perform(get("/bed/changestate")
                         .param("bedId", "9999"))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testAddBedsBulk() {
+        // Arrange
+        List<Bed> mockBeds = Arrays.asList(new Bed(), new Bed());
+        when(bedService.bulkSave(anyLong(), anyLong(), anyInt())).thenReturn(mockBeds);
+
+        // Act
+        ResponseEntity<List<Bed>> response = bedController.addBedsBulk(1L, 1L, 2);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(2, response.getBody().size());
+    }
+
+    @Test
+    public void testChangeBedState_Success() {
+        // Arrange
+        Bed mockBed = new Bed();
+        when(bedService.changeBedState(anyLong())).thenReturn(Optional.of(mockBed));
+
+        // Act
+        ResponseEntity<Bed> response = bedController.changeBedState(1L);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(mockBed, response.getBody());
     }
 
 }
