@@ -40,11 +40,8 @@ public class Routing {
             GHResponse response = hopper.route(request);
 
             if (response.hasErrors()) {
-                System.out.println("Erreur : " + response.getErrors());
+                throw new RuntimeException("Une erreur s'est produite lors du routing");
             } else {
-                System.out.println("Distance : " + response.getBest().getDistance() + " mètres");
-                System.out.println("Durée : " + response.getBest().getTime() / 1000.0 / 60.0 + " minutes");
-                System.out.println(hospital.getHospitalName());
 
                 ClosestHospital closestHospital = new ClosestHospital();
 
