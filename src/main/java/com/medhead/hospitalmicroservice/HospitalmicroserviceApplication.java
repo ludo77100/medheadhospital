@@ -1,6 +1,5 @@
 package com.medhead.hospitalmicroservice;
 
-import com.medhead.hospitalmicroservice.routing.Routing;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -1,7 +1,6 @@
 package com.medhead.hospitalmicroservice.repositories;
 
 import com.medhead.hospitalmicroservice.entities.Bed;
-import com.medhead.hospitalmicroservice.entities.Speciality;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

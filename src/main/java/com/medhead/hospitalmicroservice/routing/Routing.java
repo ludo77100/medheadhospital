@@ -3,7 +3,6 @@ package com.medhead.hospitalmicroservice.routing;
 import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
-import com.graphhopper.config.Profile;
 import com.graphhopper.util.shapes.GHPoint;
 import com.medhead.hospitalmicroservice.entities.Bed;
 import com.medhead.hospitalmicroservice.entities.ClosestHospital;
@@ -11,7 +10,6 @@ import com.medhead.hospitalmicroservice.entities.Hospital;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
