@@ -118,7 +118,7 @@ class HospitalControllerIT {
     }
 
     @Test
-    public void shouldGetAllHospitals() throws Exception {
+    void shouldGetAllHospitals() throws Exception {
         mockMvc.perform(get("/hospital/all")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -128,7 +128,7 @@ class HospitalControllerIT {
     }
 
     @Test
-    public void shouldGetHospitalById() throws Exception {
+    void shouldGetHospitalById() throws Exception {
         mockMvc.perform(get("/hospital/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -138,14 +138,14 @@ class HospitalControllerIT {
     }
 
     @Test
-    public void shouldReturnNotFoundForNonExistingHospital() throws Exception {
+    void shouldReturnNotFoundForNonExistingHospital() throws Exception {
         mockMvc.perform(get("/hospital/999")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    public void shouldGetHospitalsWithFreeBedsBySpeciality() throws Exception {
+    void shouldGetHospitalsWithFreeBedsBySpeciality() throws Exception {
         mockMvc.perform(get("/hospital/withfreebedbyspeciality")
                         .param("specialityId", "1")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -155,7 +155,7 @@ class HospitalControllerIT {
     }
 
     @Test
-    public void shouldFindClosestHospitalWithFreeBedsBySpeciality() throws Exception {
+    void shouldFindClosestHospitalWithFreeBedsBySpeciality() throws Exception {
         ResultActions result = mockMvc.perform(get("/hospital/closest")
                 .param("specialityId", "1")
                 .param("userLatStr", "51.5007")

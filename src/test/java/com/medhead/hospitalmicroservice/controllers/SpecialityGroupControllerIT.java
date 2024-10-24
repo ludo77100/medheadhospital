@@ -113,7 +113,7 @@ class SpecialityGroupControllerIT {
     }
 
     @Test
-    public void shouldGetAllSpecialityGroupsWithChildren() throws Exception {
+    void shouldGetAllSpecialityGroupsWithChildren() throws Exception {
         //Act & Asserts
         ResultActions result = mockMvc.perform(get("/specialityGroup/all"))
                 .andExpect(status().isOk())

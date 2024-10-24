@@ -11,7 +11,7 @@ class ClosestHospitalTest {
 
 
     @Test
-    public void testSetDistance() {
+    void testSetDistance() {
 
         // Arrange
         ClosestHospital closestHospital = new ClosestHospital();

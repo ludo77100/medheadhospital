@@ -37,7 +37,7 @@ class RoutingTest {
     private Routing routing;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         routing = new Routing(mockHopper);
 
         userLat = 51.5074; // Latitude de Londres
@@ -66,7 +66,7 @@ class RoutingTest {
     }
 
     @Test
-    public void getClosestHospital_ShouldReturnListOfClosestHospitals() {
+    void getClosestHospital_ShouldReturnListOfClosestHospitals() {
 
         GHResponse mockResponse = new GHResponse();
         ResponsePath responsePath = new ResponsePath();
