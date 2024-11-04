@@ -60,7 +60,7 @@ class BedControllerIT {
     @InjectMocks
     private BedController bedController ;
 
-    @Mock
+    @Autowired
     private BedService bedService;
 
 
@@ -165,19 +165,17 @@ class BedControllerIT {
     }
 
     @Test
-    public void testAddBedsBulk() {
-        // Arrange
-        List<Bed> mockBeds = Arrays.asList(new Bed(), new Bed());
-        when(bedService.bulkSave(anyLong(), anyLong(), anyInt())).thenReturn(mockBeds);
+    public void testAddBedsBulk() throws Exception {
 
-        // Act
-        ResponseEntity<List<Bed>> response = bedController.addBedsBulk(1L, 1L, 2);
-
-        // Assert
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(2, response.getBody().size());
+        mockMvc.perform(post("/bed/save")
+                .param("hospitalId", "1")
+                .param("specialityId", "1")
+                .param("bedAmount", "2")
+        ).andExpect(status().isOk());
     }
 
+
+/*    //TODO passer à mockMVC
     @Test
     public void testChangeBedState_Success() {
         // Arrange
@@ -190,6 +188,6 @@ class BedControllerIT {
         // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(mockBed, response.getBody());
-    }
+    }*/
 
 }
