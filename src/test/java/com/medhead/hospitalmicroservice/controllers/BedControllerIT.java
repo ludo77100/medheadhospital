@@ -125,7 +125,6 @@ class BedControllerIT {
     }
 
     @Test
-    @Transactional
     public void testChangeBedState_Success() throws Exception {
 
         mockMvc.perform(get("/bed/changestate")
