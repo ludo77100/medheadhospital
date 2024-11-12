@@ -1,6 +1,5 @@
 package com.medhead.hospitalmicroservice.entities;
 
-import jakarta.persistence.Entity;
 import lombok.*;
 
 import java.math.BigDecimal;
