@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn verify'
             }
             post {
                 always {
@@ -30,16 +30,16 @@ pipeline {
                 }
             }
         }
-        stage('Integration Test') {
+/*         stage('Integration Test') {
             steps {
                 sh 'mvn failsafe:integration-test failsafe:verify'
             }
             post {
                 always {
-                    junit '**/target/failsafe-reports/*.xml'
+                    junit '**//* target/failsafe-reports *//*.xml'
                 }
             }
-        }
+        } */
         stage('SonarCloud Analysis') {
             steps {
                 script {
