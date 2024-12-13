@@ -19,6 +19,19 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * Filtre de requêtes JWT (JSON Web Token)
+ *
+ * Cette classe est un filtre de sécurité qui intercepte toutes les requêtes HTTP.
+ * Elle vérifie la présence d'un jeton JWT dans l'en-tête Authorization
+ * et authentifie l'utilisateur si le jeton est valide.
+ *
+ * Fonctionnalités principales :
+ * - Extraction du jeton JWT depuis l'en-tête Authorization.
+ * - Authentification de l'utilisateur et définition du SecurityContext.
+ *
+ */
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 

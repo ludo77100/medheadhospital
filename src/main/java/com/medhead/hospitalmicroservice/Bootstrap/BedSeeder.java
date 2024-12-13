@@ -21,7 +21,7 @@ public class BedSeeder implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        //this.createBulkBed();
+        this.createBulkBed();
         //routing.routingCalcul();
     }
 
@@ -31,9 +31,10 @@ public class BedSeeder implements ApplicationListener<ContextRefreshedEvent> {
             for (long j = 22 ; j <= 83 ; j++){
                 if (i % 2 != 0 && j % 2 == 0){
                     bedService.bulkSave(i, j, 1);
-                    System.out.println(i + "   " + j);
                 }
             }
+            System.out.println(i);
+
         }
     }
 }
