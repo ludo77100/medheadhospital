@@ -7,6 +7,7 @@ import com.medhead.hospitalmicroservice.repositories.BedRepository;
 import com.medhead.hospitalmicroservice.repositories.HospitalRepository;
 import com.medhead.hospitalmicroservice.repositories.SpecialityRepository;
 import com.medhead.hospitalmicroservice.services.BedService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +62,7 @@ public class BedServiceImpl implements BedService {
      *
      * @return le lit mis à jour, ou Optional.empty() si le lit n'existe pas.
      */
+    @Transactional
     @Override
     public Optional<Bed> changeBedState(Long bedId) {
         return bedRepository.findById(bedId).map(bed -> {
@@ -85,6 +87,7 @@ public class BedServiceImpl implements BedService {
      *
      * @throws IllegalArgumentException Si l'hôpital ou la spécialité n'existent pas.
      */
+    @Transactional
     @Override
     public List<Bed> bulkSave(Long hospitalId, Long specialityId, int bedAmount) {
 
